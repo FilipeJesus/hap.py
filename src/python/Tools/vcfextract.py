@@ -96,6 +96,7 @@ def vcfExtract(vcfname, features, filterfun=None):
     nrecords = 0
     previous_end = 0
     for line in ff:
+        line = line.decode("utf-8")
         if line.startswith("#"):
             continue
         line = line.replace("\n", "")
@@ -203,8 +204,8 @@ def extractHeaders(vcfname):
         ff = open(vcfname)
 
     for l in ff:
-        if l.startswith("#"):
-            yield l.replace("\n", "")
+        if l.startswith(b'#'):
+            yield l.replace(b'\n', b'').decode("utf-8")
         else:
             break
 

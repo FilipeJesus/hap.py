@@ -21,7 +21,6 @@ try:
     version = vs.__version__
     has_sge = vs.has_sge
 except ImportError:
-    logging.warn("No version found. Please follow the installation instructions.")
     version = "unknown"
     has_sge = False
 
@@ -66,7 +65,7 @@ def which(program):
 def init():
     logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=logging.INFO)
 
-    base = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+    base = os.env["HAPDIR"]
     paths = ["bin"]
 
     for p in paths:
